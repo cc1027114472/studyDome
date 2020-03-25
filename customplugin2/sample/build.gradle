@@ -1,0 +1,14 @@
+buildscript {
+    repositories {
+        maven {
+            url uri('../gupao')
+        }
+    }
+
+    dependencies {
+        classpath group: 'com.ushine',
+        name:'customplugin',
+        version:'1.0.0'
+    }
+
+}

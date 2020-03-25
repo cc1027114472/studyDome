@@ -1,0 +1,79 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+/获得所有项目/
+this.getProjects()
+def getProjects(){
+   /* println '----------'
+    println 'Root Project'
+    println '----------' */
+        this.getAllprojects().eachWithIndex{ Project entry, int index ->
+            if (index == 0){
+                println "Root project:'${project.name}'"
+            }else {
+                println "Sub project:'${project.name}'"
+            }
+
+        }
+}
+//获取父目录
+//getParentProject()
+//def getParentProject(){
+//    def name = this.getParent().name
+//    println "the parent project is : ${name}"
+//}
+
+ //若传两个参数 最后一个参数 是闭包的话 可以这样写
+Project Project2(String name){
+
+}
+//给项目配置
+//project('myproj-common'){
+//    Project project ->
+//        group 'com.test'
+//        version '2.0.0'
+//        dependencies {
+//         }
+//}
+
+def getRootPro(){
+    this.getRootProject().name
+}
+//依赖引用配置
+/*subprojects {
+    apply from this.file('common.gradle')
+}*/
+//获取根目录
+/*def getRootDir(){
+    println this.getRootDir().absolutePath
+}*/
+getRootDir()
+//拷贝
+copy{
+    from file('build/kotlin/*')
+    into getRootProject().getBuildDir().path+"temp"
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+// 遍历多有文件的名字
+fileTree('build/outputs'){
+    FileTree fileTree ->
+        fileTree.visit {FileTreeElement element ->
+            println 'the file name is :' + element.file.name
+        }
+}
+/**
+ * 
+ */
