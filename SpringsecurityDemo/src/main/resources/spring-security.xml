@@ -12,7 +12,6 @@
         <!--自动实现表单登录-->
         <form-login/>
 
-
         <!--tuichu  -->
         <logout/>
     </http>
